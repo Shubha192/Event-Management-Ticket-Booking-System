@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+  <h2>{{ event.title }}</h2>
+
+  <p><strong>Date & Time:</strong> {{ event.date|date:"M d, Y, P" }}</p>
+  <p><strong>Venue:</strong> {{ event.venue }}</p>
+  <p><strong>Available Capacity:</strong> {{ event.capacity }}</p>
+  <p><strong>Description:</strong> {{ event.description }}</p>
+
+  <h3>Book Tickets</h3>
+  <form method="post" action="{% url 'new_booking' event.id %}">
+    {% csrf_token %}
+    <label for="num_tickets">Number of tickets:</label>
+    <input type="number" name="num_tickets" min="1" max="{{ event.capacity }}" required>
+    <button type="submit">Book</button>
+  </form>
+
+  <a href="{% url 'event_list' %}">← Back to all events</a>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+  <h2>My Bookings</h2>
+  <ul>
+  {% for booking in bookings %}
+    <li>
+      <strong>{{ booking.event.title }}</strong> —
+      {{ booking.num_tickets }} tickets —
+      {{ booking.event.date|date:"M d, Y, P" }} —
+      {{ booking.event.venue }}
+      |
+      <a href="{% url 'download_ticket' booking.id %}">Download PDF</a>
+      |
+      <a href="{% url 'cancel_booking' booking.id %}">Cancel</a>
+    </li>
+  {% empty %}
+    <li>You have no bookings yet.</li>
+  {% endfor %}
+  </ul>
+  <a href="{% url 'event_list' %}">← Back to all events</a>
+{% endblock %}

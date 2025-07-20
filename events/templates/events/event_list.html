@@ -1,17 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Event List</title>
-</head>
-<body>
-    <h1>All Events</h1>
-    <ul>
-        {% for event in events %}
-            <li>{{ event.title }} — {{ event.date_time }}</li>
-        {% empty %}
-            <li>No events available.</li>
-        {% endfor %}
-    </ul>
-</body>
-</html>
+{% extends "base.html" %}
+{% block content %}
+  <h2>All Events</h2>
+  <ul>
+  {% for event in events %}
+    <li>
+      <a href="{% url 'event_detail' event.id %}">{{ event.title }}</a>
+      — {{ event.date|date:"M d, Y, P" }}
+    </li>
+  {% endfor %}
+  </ul>
+{% endblock %}
+

@@ -1,0 +1,8 @@
+<h1>Book Tickets for {{ event.title }}</h1>
+
+<form method="post">
+    {% csrf_token %}
+    <label>Number of tickets:</label>
+    <input type="number" name="num_tickets" min="1" max="{{ event.capacity }}">
+    <button type="submit">Confirm Booking</button>
+</form>

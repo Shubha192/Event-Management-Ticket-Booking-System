@@ -8,3 +8,4 @@ def event_list(request):
 def event_detail(request, event_id):
     event = get_object_or_404(Event, pk=event_id)
     return render(request, 'events/event_detail.html', {'event': event})
+
